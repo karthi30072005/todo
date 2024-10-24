@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body class="" style="background-color: rgb(48, 154, 164);">
+    <div class="row">
+        <div class="col-1 col-md-3"></div>
+        <div class="col-10 col-md-6 mt-5">
+            <h2 class="text-center text-danger">Tudo List</h2>
+            <div class="card p-3 bg-info">
+                <!--<form>
+                    <div class="row">
+                        <div class="col-9 input-group">
+                            <input type="text" id="name" class="form-control">
+                            <input type="submit" value="add" class="button btn btn-success col-12" onclick="addList(event)">
+                        </div>
+                        <div class="col-3 text-center">
+                            <input type="submit" value="add" class="button btn btn-success col-12" onclick="addList(event)">
+                        </div
+                    </div>
+                </form>>-->
+                <form action="">
+                    <ul id="list" class="mt-4 list-group list-group-flush">
+                        <li class="list-group-item d-flex  input-group bg-info">
+                            <input type="text" id="name" class="w-75 form-control">
+                            <input type="submit" value="add" class="button btn btn-success col-12" onclick="addList(event)">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="col-1 col-md-3"></div>
+    </div>
+</body>
+</html>
+<script>
+    function addList()
+    {
+        event.preventDefault();
+        let name=document.getElementById("name");
+        let list=document.getElementById("list");
+        if(!name.value=="")
+        {
+            list.classList.remove("d-none");
+            name.classList.remove("is-invalid");
+            let list_item=document.createElement("li");
+            list_item.classList.add("list-group-item");
+            list_item.classList.add("bg-info");
+            list_item.innerHTML=name.value+`<button class="button btn btn-danger float-end" onclick="removeList(event)">delete</button>`;
+            list.append(list_item);
+            name.value=null;
+        }
+        else
+        {
+            name.classList.add("is-invalid");
+        }
+    }
+
+    function removeList()
+    {
+        event.target.parentElement.remove();
+    }
+
+</script>
+
+<style>
+    .button
+    {
+        width:80px;
+    }
+
+    ul
+    {
+        font-size:20px;
+        font-weight:bold;
+    }
+</style>
